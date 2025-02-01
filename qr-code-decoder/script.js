@@ -150,7 +150,9 @@ $(document).ready(function () {
 				ctx.drawImage(cameraPreview, 0, 0, canvas.width, canvas.height);
 				const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
 				const code = jsQR(imageData.data, imageData.width, imageData.height);
-		
+
+				window.navigator.vibrate(42);
+
 				if (code) {
 					stopCameraScan();
 					processQRCode(code);
