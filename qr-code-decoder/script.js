@@ -6,6 +6,7 @@ $(document).ready(function () {
 	const cameraContainer = $('#camera-container');
 	const cameraPreview = $('#camera-preview')[0];
 	const stopScanButton = $('#stop-scan-button');
+	const cameraError = $('#camera-error');
 	const modal = $('#resultModal');
 	const modalDecodedText = $('#modal-decoded-text');
 	const modalQrCodeType = $('#modal-qr-code-type');
@@ -70,8 +71,13 @@ $(document).ready(function () {
 	}
 
 	function showFileError(msg) {
-		fileError.removeClass('visually-hidden');
-		setTimeout(() => { fileError.addClass('visually-hidden').text(msg); }, 3000);
+		fileError.removeClass('visually-hidden').html(msg);
+		setTimeout(() => { fileError.addClass('visually-hidden'); }, 3000);
+	}
+	function showCameraError(msg) {
+		if (msg && msg.length > 0) cameraError.html(msg);
+		cameraError.removeClass('visually-hidden');
+		setTimeout(() => { cameraError.addClass('visually-hidden'); }, 4200);
 	}
 
 	scanButton.on('click', async function () {
@@ -80,16 +86,14 @@ $(document).ready(function () {
 			stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
 			cameraPreview.srcObject = stream;
 			cameraContainer.removeClass('visually-hidden');
-			scanButton.hide();
 			startCameraScan();
 		} catch (err) {
-			alert("Error accessing camera: " + err.message);
+			showCameraError();  // err.message
 		}
 	});
 	stopScanButton.on('click', function () {
 		stopCameraScan();
 		cameraContainer.addClass('visually-hidden');
-		scanButton.show();
 		if (stream) {
 			stream.getTracks().forEach(track => track.stop());
 		}

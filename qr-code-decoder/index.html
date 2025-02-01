@@ -232,9 +232,10 @@
 								<div class="small text-uppercase mb-1">or upload file</div>
 								<input type="file" id="file-input" accept="image/*" class="form-control rounded-0" aria-label="Upload QR code image">
 							</div>
-							<div>
+							<div class="position-relative">
 								<div class="small text-uppercase mb-1">or</div>
 								<button id="scan-button" class="btn btn-lg btn-primary px-4 rounded-0" aria-label="Scan QR Code with Camera">Scan with Camera</button>
+								<div id="camera-error" class="d-inline bg-danger text-bg-danger px-3 py-2 position-absolute top-50 start-50 translate-middle shadow visually-hidden"><span class="fw-bold">Camera Error.</span><br />Make sure your camera works and this page was granted access to use it.</div>
 							</div>
 							<div class="qr-zindex-2048 modal fade" id="resultModal" tabindex="-1" aria-labelledby="resultModalLabel" aria-hidden="true">
 								<div class="modal-dialog modal-lg modal-dialog-scrollable">
