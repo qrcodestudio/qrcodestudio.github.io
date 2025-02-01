@@ -236,13 +236,6 @@
 								<div class="small text-uppercase mb-1">or</div>
 								<button id="scan-button" class="btn btn-lg btn-primary px-4 rounded-0" aria-label="Scan QR Code with Camera">Scan with Camera</button>
 							</div>
-							<div id="camera-container" class="qr-zindex-2048 position-fixed start-0 top-0 w-100 h-100 bg-white visually-hidden">
-								<div>Point your camera to QR Code</div>
-								<video id="camera-preview" class="ratio-1x1 border border-dark border-1"></video>
-								<div class="d-grid gap-2">
-									<button id="stop-scan-button" class="btn btn-danger mt-2 rounded-0" aria-label="Stop Camera">Stop Camera</button>
-								</div>
-							</div>
 							<div class="qr-zindex-2048 modal fade" id="resultModal" tabindex="-1" aria-labelledby="resultModalLabel" aria-hidden="true">
 								<div class="modal-dialog modal-lg modal-dialog-scrollable">
 									<div class="modal-content rounded-0 bg-light shadow-lg">
@@ -393,6 +386,13 @@
 			</div>
 		</div>
 	</main>
+	<div id="camera-container" class="qr-zindex-2048 position-fixed start-0 top-0 w-100 h-100 bg-white visually-hidden">
+		<div class="sticky-top">Point your camera to QR Code</div>
+		<video id="camera-preview" class="ratio-1x1 border border-dark border-1"></video>
+		<div class="d-grid gap-2 sticky-bottom">
+			<button id="stop-scan-button" class="btn btn-danger mt-2 rounded-0" aria-label="Stop Camera">Stop Camera</button>
+		</div>
+	</div>
 	<footer class="bg-dark text-white py-4">
 		<div class="container text-center">
 			<p class="mb-0">&copy; 2025 <a href="/" title="QR Code Studio App home" class="link-warning text-decoration-none">QR Code Studio App</a><span class="visually-hidden"> QRCode Decoder Online</span>. All rights reserved.</p>
