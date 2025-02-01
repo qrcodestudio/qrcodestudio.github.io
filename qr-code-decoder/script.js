@@ -15,6 +15,22 @@ $(document).ready(function () {
 	let stream;
 	let scanning = false;
 
+	cameraPreview.addEventListener('loadedmetadata', () => {
+		const aspectRatio = cameraPreview.videoWidth / cameraPreview.videoHeight;
+		const container = cameraPreview.parentElement;
+	
+		// Adjust container dimensions based on the video's aspect ratio
+		if (aspectRatio > 1) {
+		// Landscape orientation
+			container.style.width = '100%';
+			container.style.height = `${100 / aspectRatio}%`;
+		} else {
+		// Portrait orientation
+			container.style.width = `${100 * aspectRatio}%`;
+			container.style.height = '100%';
+		}
+	});
+
 	dropArea.on('dragover', function (e) {
 		e.preventDefault();
 		$(this).addClass('bg-dark').addClass('text-bg-dark');
