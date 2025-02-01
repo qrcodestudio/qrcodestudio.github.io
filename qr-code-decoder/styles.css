@@ -6,7 +6,7 @@
 }
 #camera-preview {
 	max-width: 100%;
-	max-height: 100%;
+	max-height: 50%;
 	object-fit: contain;
 }
 .qr-height-300px { height: 300px; }
