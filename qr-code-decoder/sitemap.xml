@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+	<url>
+		<loc>https://qrcodestudio.app/qr-code-decoder/</loc>
+		<lastmod>2025-02-01</lastmod>
+		<image:image>
+			<image:loc>https://qrcodestudio.app/media/qrcodestudioapp-logo-256.webp</image:loc>
+			<image:title>QR Code Studio App Logo</image:title>
+		</image:image>
+		<image:image>
+			<image:loc>https://qrcodestudio.app/qr-code-decoder/media/qr-code-decoder-screenshot.webp</image:loc>
+			<image:title>QR Code Studio's QR Code Decoder Screenshot</image:title>
+		</image:image>
+		<video:video>
+			<video:thumbnail_loc>https://qrcodestudio.app/qr-code-decoder/media/qr-code-decoder-video-thumbnail.webp</video:thumbnail_loc>
+			<video:title>QR Code Decoder Online - Scan &amp; Read QR Codes Instantly (Free Tool)</video:title>
+			<video:description>Decode any QR code instantly with our free online tool! Scan from your camera or upload an image. No app required. Works on all devices. Quick, secure, and user-friendly.</video:description>
+			<video:player_loc>https://www.youtube.com/watch?v=TODO</video:player_loc>
+			<video:duration>1006</video:duration>
+			<video:platform relationship="allow">web mobile tv</video:platform>
+			<video:requires_subscription>no</video:requires_subscription>
+			<video:live>no</video:live>
+		</video:video>
+	</url>
+</urlset>

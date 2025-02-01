@@ -1,0 +1,6 @@
+#drop-area {
+	border-color: var(--bs-primary);
+	border-width: 3px;
+	border-style: dotted;
+	transition: all 0.2s ease;
+}
