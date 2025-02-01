@@ -124,8 +124,6 @@ $(document).ready(function () {
 	});
 
 	function startCameraScan() {
-alert('scan start');
-window.navigator.vibrate(200);
 		scanning = true;
 		let lastScan = 0;
 		const scanInterval = 200;
@@ -152,8 +150,6 @@ window.navigator.vibrate(200);
 				ctx.drawImage(cameraPreview, 0, 0, canvas.width, canvas.height);
 				const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
 				const code = jsQR(imageData.data, imageData.width, imageData.height);
-
-				window.navigator.vibrate(42);
 
 				if (code) {
 					stopCameraScan();
