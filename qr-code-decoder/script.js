@@ -109,7 +109,6 @@ $(document).ready(function () {
 	});
 	stopScanButton.on('click', function () {
 		stopCameraScan();
-		cameraContainer.addClass('visually-hidden');
 		if (stream) {
 			stream.getTracks().forEach(track => track.stop());
 		}
@@ -173,6 +172,7 @@ $(document).ready(function () {
 
 	function stopCameraScan(){
 		scanning = false;
+		cameraContainer.addClass('visually-hidden');
 	}
 
 	function processQRCode(code) {
