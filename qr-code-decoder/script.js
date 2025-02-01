@@ -107,18 +107,22 @@ $(document).ready(function () {
 		scanning = true;
 		let lastScan = 0;
 		const scanInterval = 100;
-		
-		function scanFrame(timestamp) {
+	
+		function scanFrame(now, metadata) {
 			if (!scanning) return;
-			
-			if (timestamp - lastScan >= scanInterval) {
-				lastScan = timestamp;
-				
+		
+			if (now - lastScan >= scanInterval) {
+				lastScan = now;
+		
 				if (cameraPreview.videoWidth === 0) {
-					requestAnimationFrame(scanFrame);
+					if (cameraPreview.requestVideoFrameCallback) {
+						cameraPreview.requestVideoFrameCallback(scanFrame);
+					} else {
+						requestAnimationFrame(scanFrame);
+					}
 					return;
 				}
-			
+	
 				const canvas = document.createElement('canvas');
 				const ctx = canvas.getContext('2d');
 				canvas.width = cameraPreview.videoWidth;
@@ -126,17 +130,27 @@ $(document).ready(function () {
 				ctx.drawImage(cameraPreview, 0, 0, canvas.width, canvas.height);
 				const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
 				const code = jsQR(imageData.data, imageData.width, imageData.height);
-				
+		
 				if (code) {
 					stopCameraScan();
-					window.navigator.vibrate(200);
 					processQRCode(code);
 				}
 			}
+	
+			if (cameraPreview.requestVideoFrameCallback) {
+				cameraPreview.requestVideoFrameCallback(scanFrame);
+			} else {
+				requestAnimationFrame(scanFrame);
+			}
+		}
+	
+		if (cameraPreview.requestVideoFrameCallback) {
+			cameraPreview.requestVideoFrameCallback(scanFrame);
+		} else {
 			requestAnimationFrame(scanFrame);
 		}
-		requestAnimationFrame(scanFrame);
 	}
+
 	function stopCameraScan(){
 		scanning = false;
 	}
