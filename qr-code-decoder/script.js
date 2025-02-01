@@ -124,6 +124,7 @@ $(document).ready(function () {
 	});
 
 	function startCameraScan() {
+alert('scan start');
 window.navigator.vibrate(200);
 		scanning = true;
 		let lastScan = 0;
