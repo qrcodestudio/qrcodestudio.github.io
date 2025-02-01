@@ -143,10 +143,14 @@ $(document).ready(function () {
 
 	function processQRCode(code) {
 		if (code) {
-			let codeData = code.data;
-			let codeType = guessQrCodeType(codeData);
-			modalQrCodeType.val(codeType);
-			modalDecodedText.val(codeData);
+			const codeData = code.data;
+			const [codeType, codeName] = guessQrCodeType(codeData);
+			modalQrCodeType.val(codeName);
+			if (['url', 'call', 'sms', 'whatsapp', 'email', 'gmail', 'gEvent', 'location', 'paypal', 'crypto'].includes(codeType)) {
+				modalDecodedText.html(`<a href="${codeData}" title="Open ${codeName}" target="_blank" rel="external noopener">${codeData}</a>`);
+			} else {
+				modalDecodedText.html(codeData);
+			}
 			modal.modal('show');
 		} else {
 			showFileError('No QR Code found.');
@@ -154,36 +158,36 @@ $(document).ready(function () {
 	}
 	function guessQrCodeType(text) {
 		const urlRegex = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
-		if (urlRegex.test(text)) return 'URL';
+		if (urlRegex.test(text)) return ['url', 'Link'];
 
-		if (text.startsWith("BEGIN:VCARD")) return 'vCard';
-		if (text.startsWith('MECARD:')) return 'meCard';
+		if (text.startsWith("BEGIN:VCARD")) return ['vCard', 'vCard'];
+		if (text.startsWith('MECARD:')) return ['meCard', 'meCard'];
 
 		const phoneRegex = /^[+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
-		if (phoneRegex.test(text)) return 'Phone Number (Call)';
+		if (phoneRegex.test(text)) return ['call', 'Phone Number (Call)'];
 
-		if (text.startsWith('smsto:') || text.startsWith('sms:')) return 'Phone Number (SMS)';
+		if (text.startsWith('smsto:') || text.startsWith('sms:')) return ['sms', 'Phone Number (SMS)'];
 
-		if (text.startsWith("https://wa.me/")) return 'WhatsApp Message';
+		if (text.startsWith("https://wa.me/")) return ['whatsapp', 'WhatsApp Message'];
 
 		const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-		if (text.startsWith("mailto:") || emailRegex.test(text)) return 'Email Message';
+		if (text.startsWith("mailto:") || emailRegex.test(text)) return ['email', 'Email Message'];
 
-		if (text.startsWith("https://mail.google.com/mail/?view=cm")) return 'Gmail Message';
+		if (text.startsWith("https://mail.google.com/mail/?view=cm")) return ['gmail', 'Gmail Message'];
 
-		if (text.startsWith("BEGIN:VEVENT")) return 'vEvent';
+		if (text.startsWith("BEGIN:VEVENT")) return ['vEvent', 'vEvent'];
 
-		if (text.startsWith("https://www.google.com/calendar/event")) return 'Google Calendar Event';
+		if (text.startsWith("https://www.google.com/calendar/event")) return ['gEvent', 'Google Calendar Event'];
 
-		if (text.startsWith("https://www.google.com/maps") || text.startsWith("geo:")) return 'Location';
+		if (text.startsWith("https://www.google.com/maps") || text.startsWith("geo:")) return ['location', 'Location'];
 
-		if (text.startsWith("WIFI:")) return 'Wi-Fi Credentials';
+		if (text.startsWith("WIFI:")) return ['wifi', 'Wi-Fi Credentials'];
 
-		if (text.startsWith("https://www.paypal.me/")) return 'PayPal Payment';
+		if (text.startsWith("https://www.paypal.me/")) return ['paypal', 'PayPal Payment'];
 
 		const cryptoPrefixes = ["bitcoin:", "ethereum:", "litecoin:", "bitcoincash:"];
-		if (cryptoPrefixes.some(prefix => text.startsWith(prefix))) return 'Crypto Payment';
+		if (cryptoPrefixes.some(prefix => text.startsWith(prefix))) return ['crypto', 'Crypto Payment'];
 
-		return 'Text / Raw Data';
+		return ['text', 'Text / Raw Data'];
 	}
 });
