@@ -15,19 +15,21 @@ $(document).ready(function () {
 	let stream;
 	let scanning = false;
 
-	cameraPreview.addEventListener('_loadedmetadata', () => {
+	cameraPreview.addEventListener('loadedmetadata', () => {
 		const aspectRatio = cameraPreview.videoWidth / cameraPreview.videoHeight;
 		const container = cameraPreview.parentElement;
 	
+		container.style.width = `${100 * aspectRatio}%`;
+		container.style.height = '100%';
 		// Adjust container dimensions based on the video's aspect ratio
 		if (aspectRatio > 1) {
 		// Landscape orientation
-			container.style.width = '100%';
-			container.style.height = `${100 / aspectRatio}%`;
+	//		container.style.width = '100%';
+	//		container.style.height = `${100 / aspectRatio}%`;
 		} else {
 		// Portrait orientation
-			container.style.width = `${100 * aspectRatio}%`;
-			container.style.height = '100%';
+	//		container.style.width = `${100 * aspectRatio}%`;
+	//		container.style.height = '100%';
 		}
 	});
 
