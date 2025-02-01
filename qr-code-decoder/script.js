@@ -15,7 +15,7 @@ $(document).ready(function () {
 	let stream;
 	let scanning = false;
 
-	cameraPreview.addEventListener('loadedmetadata', () => {
+	cameraPreview.addEventListener('_loadedmetadata', () => {
 		const aspectRatio = cameraPreview.videoWidth / cameraPreview.videoHeight;
 		const container = cameraPreview.parentElement;
 	
