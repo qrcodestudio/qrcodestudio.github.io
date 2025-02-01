@@ -38,8 +38,7 @@ $(document).ready(function () {
 
 		const allowedMimeTypes = ['image/png', 'image/jpeg', 'image/gif', 'image/webp'];
 		if (!allowedMimeTypes.includes(file.type)) {
-			fileError.removeClass('visually-hidden');
-			setTimeout(() => { fileError.addClass('visually-hidden'); }, 3000);
+			showFileError('<span class="fw-bold">Unsupported File Format.</span><br />Please upload a PNG, JPEG, GIF, or WEBP image.');
 			return;
 		}
 
@@ -66,9 +65,13 @@ $(document).ready(function () {
 			processQRCode(code);
 		};
 		image.onerror = function() {
-			fileError.removeClass('visually-hidden');
-			setTimeout(() => { fileError.addClass('visually-hidden'); }, 3000);
+			showFileError('<span class="fw-bold">Could Not Open Image File.</span><br />Please upload a PNG, JPEG, GIF, or WEBP image.');
 		}
+	}
+
+	function showFileError(msg) {
+		fileError.removeClass('visually-hidden');
+		setTimeout(() => { fileError.addClass('visually-hidden').text(msg); }, 3000);
 	}
 
 	scanButton.on('click', async function () {
@@ -146,8 +149,7 @@ $(document).ready(function () {
 			modalDecodedText.val(codeData);
 			modal.modal('show');
 		} else {
-			fileError.removeClass('visually-hidden');
-			setTimeout(() => { fileError.addClass('visually-hidden'); }, 3000);
+			showFileError('No QR Code found.');
 		}
 	}
 	function guessQrCodeType(text) {
