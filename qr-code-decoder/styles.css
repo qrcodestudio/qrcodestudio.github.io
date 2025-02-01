@@ -4,3 +4,7 @@
 	border-style: dotted;
 	transition: all 0.2s ease;
 }
+.qr-height-300px { height: 300px; }
+.qr-zindex-2048 { z-index: 2048; }
+.qr-zindex-2047 { z-index: 2048; }
+.qr-zindex-2046 { z-index: 2048; }

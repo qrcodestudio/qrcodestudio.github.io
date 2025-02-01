@@ -242,11 +242,11 @@
 									<button id="stop-scan-button" class="btn btn-danger mt-2 rounded-0" aria-label="Stop Camera">Stop Camera</button>
 								</div>
 							</div>
-							<div class="modal fade" id="resultModal" tabindex="-1" aria-labelledby="resultModalLabel" aria-hidden="true" style="z-index:2048">
+							<div class="qr-zindex-2048 modal fade" id="resultModal" tabindex="-1" aria-labelledby="resultModalLabel" aria-hidden="true">
 								<div class="modal-dialog modal-lg modal-dialog-scrollable">
 									<div class="modal-content rounded-0 bg-light shadow-lg">
 										<div class="modal-header bg-primary text-bg-primary rounded-0">
-											<h3 class="modal-title fs-4" id="resultModalLabel">Decoded QR Code</h5>
+											<h3 class="modal-title fs-4" id="resultModalLabel">Decoded QR Code</h3>
 											<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 										</div>
 										<div class="modal-body p-0" aria-live="polite">
@@ -262,7 +262,7 @@
 														<span class="input-group-text rounded-0 bg-dark text-bg-dark bg-opacity-50 col-12 col-lg-auto">
 															<span class="align-self-start">QR Code Data</span>
 														</span>
-														<textarea id="modal-decoded-text" readonly class="form-control rounded-0" aria-label="QR Code Data" style="height:300px;"></textarea>
+														<textarea id="modal-decoded-text" readonly class="qr-height-300px form-control rounded-0" aria-label="QR Code Data"></textarea>
 														<button type="button" id="modal-copy-button" class="qr-modal-copy-button btn btn-primary rounded-0 col-12 col-lg-auto" aria-label="Copy Raw QR Code Data">
 															<svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16">
 																<path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1z"/>
@@ -327,15 +327,15 @@
 				<div>Whether you're using a phone, tablet, or computer, our <strong>free online QR code scanner</strong> simplifies decoding. Perfect for users who want to <strong>decode QR codes without app</strong> installations!</div>
 				<div class="row g-4">
 					<div class="col-md-4">
-						<h3 class="fs-4 text-warning">1. Upload or Scan</h4>
+						<h3 class="fs-4 text-warning">1. Upload or Scan</h3>
 						<p class="m-0">Use your camera to scan a QR code live or <strong>upload a QR code image to scan</strong>. We support JPG, PNG, and GIF formats.</p>
 					</div>
 					<div class="col-md-4">
-						<h3 class="fs-4 text-warning">2. Decode QR Instantly</h4>
+						<h3 class="fs-4 text-warning">2. Decode QR Instantly</h3>
 						<p class="m-0">Our <strong>online QR code reader</strong> processes the code automatically for <strong>instant QR code decoding</strong>.</p>
 					</div>
 					<div class="col-md-4">
-						<h3 class="fs-4 text-warning">3. Copy & Use</h4>
+						<h3 class="fs-4 text-warning">3. Copy & Use</h3>
 						<p class="m-0">Receive decoded text, URLs, or contact information immediately. No registration required!</p>
 					</div>
 				</div>
@@ -347,19 +347,19 @@
 			<div class="row g-4">
 				<div class="col-md-4">
 					<div class="card h-100 p-3 rounded-0">
-						<h3 class="fs-3">No Downloads</h4>
+						<h3 class="fs-3">No Downloads</h3>
 						<p class="m-0">As a <strong>web-based QR code scanner</strong>, it works directly in your browser—no software to install.</p>
 					</div>
 				</div>
 				<div class="col-md-4">
 					<div class="card h-100 p-3 rounded-0">
-						<h3 class="fs-3">Universal Compatibility</h4>
+						<h3 class="fs-3">Universal Compatibility</h3>
 						<p class="m-0"><strong>Scan QR codes</strong> from any device (iOS, Android, Windows, Mac) or upload QR code images from your gallery.</p>
 					</div>
 				</div>
 				<div class="col-md-4">
 					<div class="card h-100 p-3 rounded-0">
-						<h3 class="fs-3">Privacy Guaranteed</h4>
+						<h3 class="fs-3">Privacy Guaranteed</h3>
 						<p class="m-0">All QR scans are processed securely in your browser on your device. Your data stays private.</p>
 					</div>
 				</div>
@@ -370,23 +370,23 @@
 			<h2 class="m-0">Frequently Asked Questions</h2>
 			<div class="list-group rounded-0">
 				<div class="list-group-item py-3">
-					<h3 class="fs-4">Can I decode QR codes without installing an app?</h5>
+					<h3 class="fs-4">Can I decode QR codes without installing an app?</h3>
 					<p class="m-0">Yes! Our <strong>free online QR code scanner</strong> works directly in your browser - no apps, downloads or accounts required.</p>
 				</div>
 				<div class="list-group-item py-3">
-					<h3 class="fs-4">What image formats do you support?</h5>
+					<h3 class="fs-4">What image formats do you support?</h3>
 					<p class="m-0">You can <strong>scan QR code from image</strong> files like JPG, PNG, or GIF. Just upload and decode!</p>
 				</div>
 				<div class="list-group-item py-3">
-					<h3 class="fs-4">Is this QR code tool mobile-friendly?</h5>
+					<h3 class="fs-4">Is this QR code tool mobile-friendly?</h3>
 					<p class="m-0">Yes! Use our <strong>qr code reader web</strong> tool on smartphones, tablets, or desktops.</p>
 				</div>
 				<div class="list-group-item py-3">
-					<h3 class="fs-4">How fast are results?</h5>
+					<h3 class="fs-4">How fast are results?</h3>
 					<p class="m-0">Enjoy <strong>instant QR code decoding</strong> — results appear in under 3 seconds.</p>
 				</div>
 				<div class="list-group-item py-3">
-					<h3 class="fs-4">Is my data stored?</h5>
+					<h3 class="fs-4">Is my data stored?</h3>
 					<p class="m-0">No. All <strong>QR code scans</strong> are performed locally in your browser and no data is sent to our server.</p>
 				</div>
 			</div>
@@ -396,7 +396,7 @@
 		<div class="container text-center">
 			<p class="mb-0">&copy; 2025 <a href="/" title="QR Code Studio App home" class="link-warning text-decoration-none">QR Code Studio App</a><span class="visually-hidden"> QRCode Decoder Online</span>. All rights reserved.</p>
 		</div>
-		<div class="position-fixed bottom-0 end-0 me-2 mb-2 me-md-3 mb-md-3 shadow" style="z-index:2047">
+		<div class="qr-zindex-2046 position-fixed bottom-0 end-0 me-2 mb-2 me-md-3 mb-md-3 shadow">
 			<button class="btn btn-danger border border-1 rounded-0 p-2" onclick="window.navigator.share({url:window.document.location,text:window.document.title,title:window.document.title})" aria-label="Share This Page">
 				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-white m-1" viewBox="0 0 16 16">
 					<path d="M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.5 2.5 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5"/>
