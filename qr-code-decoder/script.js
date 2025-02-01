@@ -126,7 +126,7 @@ $(document).ready(function () {
 	function startCameraScan() {
 		scanning = true;
 		let lastScan = 0;
-		const scanInterval = 100;
+		const scanInterval = 200;
 	
 		function scanFrame(now, metadata) {
 			if (!scanning) return;
