@@ -1,6 +1,6 @@
 $(document).ready(function () {
 	const kClassHidden = 'visually-hidden';
-	const dropArea = $('#drop-area');
+	const kUIDropArea = $('#drop-area');
 	const fileError = $('#file-error');
 	const fileInput = $('#file-input');
 	const scanButton = $('#scan-button');
@@ -16,15 +16,15 @@ $(document).ready(function () {
 	let stream;
 	let scanning = false;
 
-	dropArea.on('dragover', function (e) {
+	kUIDropArea.on('dragover', function (e) {
 		e.preventDefault();
 		$(this).addClass('bg-dark').addClass('text-bg-dark');
 	});
-	dropArea.on('dragleave', function (e) {
+	kUIDropArea.on('dragleave', function (e) {
 		e.preventDefault();
 		$(this).removeClass('bg-dark').removeClass('text-bg-dark');
 	});
-	dropArea.on('drop', function (e) {
+	kUIDropArea.on('drop', function (e) {
 		e.preventDefault();
 		$(this).removeClass('bg-dark').removeClass('text-bg-dark');
 		const file = e.originalEvent.dataTransfer.files[0];
@@ -64,7 +64,9 @@ $(document).ready(function () {
 			ctx.drawImage(image, 0, 0, image.width, image.height);
 			const imageData = ctx.getImageData(0, 0, image.width, image.height);
 			const code = jsQR(imageData.data, imageData.width, imageData.height);
-			processQRCode(code);
+			if (!processQRCode(code) === true) {
+				showFileError('No QR Code found.');
+			}
 		};
 		image.onerror = function() {
 			showFileError('<span class="fw-bold">Could Not Open Image File.</span><br />Please upload a PNG, JPEG, GIF, or WEBP image.');
@@ -136,8 +138,7 @@ $(document).ready(function () {
 				const code = jsQR(imageData.data, imageData.width, imageData.height);
 
 				if (code) {
-					stopCameraScan();
-					processQRCode(code);
+					if (processQRCode(code) === true) stopCameraScan();
 				}
 			}
 	
@@ -162,17 +163,19 @@ $(document).ready(function () {
 	function processQRCode(code) {
 		if (code) {
 			const codeData = code.data;
-			const [codeType, codeName] = guessQrCodeType(codeData);
-			modalQrCodeType.val(codeName);
-			if (['url', 'call', 'sms', 'whatsapp', 'email', 'gmail', 'gEvent', 'location', 'paypal', 'crypto'].includes(codeType)) {
-				modalDecodedText.html(`<a href="${codeData}" title="Open ${codeName}" target="_blank" rel="external noopener">${codeData}</a>`);
-			} else {
-				modalDecodedText.html(codeData);
+			if (codeData.length > 0) {
+				const [codeType, codeName] = guessQrCodeType(codeData);
+				modalQrCodeType.val(codeName);
+				if (['url', 'call', 'sms', 'whatsapp', 'email', 'gmail', 'gEvent', 'location', 'paypal', 'crypto'].includes(codeType)) {
+					modalDecodedText.html(`<a href="${codeData}" title="Open ${codeName}" target="_blank" rel="external noopener">${codeData}</a>`);
+				} else {
+					modalDecodedText.html(codeData);
+				}
+				modal.modal('show');
+				return true;
 			}
-			modal.modal('show');
-		} else {
-			showFileError('No QR Code found.');
 		}
+		return false;
 	}
 	function guessQrCodeType(text) {
 		const urlRegex = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
