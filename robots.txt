@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://qrcodestudio.app/sitemap_index.xml
