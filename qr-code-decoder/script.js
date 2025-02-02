@@ -169,8 +169,7 @@ $(document).ready(function () {
 			requestAnimationFrame(scanFrame);
 		}
 	}
-
-	function stopCameraScan(){
+	function stopCameraScan() {
 		scanning = false;
 		cameraContainer.addClass('visually-hidden');
 	}
