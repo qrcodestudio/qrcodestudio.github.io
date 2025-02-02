@@ -31,7 +31,7 @@
 		}
 	],
 	"scope": "https://qrcodestudio.app/qr-code-decoder/",
-	"start_url": "/?source=pwa",
+	"start_url": "/qr-code-decoder/?source=pwa",
 	"background_color": "#ffffff",
 	"theme_color": "#0d6efd",
 	"display": "standalone",
