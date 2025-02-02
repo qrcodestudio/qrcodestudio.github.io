@@ -1,20 +1,20 @@
 $(document).ready(function () {
 	const kClassHidden = 'visually-hidden';
-	const kUIDropArea = $('#drop-area');
-	const fileError = $('#file-error');
-	const fileInput = $('#file-input');
-	const scanButton = $('#scan-button');
-	const cameraContainer = $('#camera-container');
-	const cameraPreview = $('#camera-preview')[0];
-	const stopScanButton = $('#stop-scan-button');
-	const cameraError = $('#camera-error');
-	const modal = $('#resultModal');
-	const modalDecodedText = $('#modal-decoded-text');
-	const modalQrCodeType = $('#modal-qr-code-type');
-	const modalCopyButton = $('#modal-copy-button');
-	const modalCopyNotification = $('#modal-copy-notification');
-	let stream;
-	let scanning = false;
+	const kUIDropArea = $('#qr-drop-area');
+	const kUIFileInput = $('#qr-file-input');
+	const kUIScanButton = $('#qr-scan-button');
+	const kUIStopScanButton = $('#qr-stop-scan-button');
+	const kUIFileErrorToast = $('#qr-file-error-toast');
+	const kUICameraContainer = $('#qr-camera-container');
+	const kUICameraPreview = $('#qr-camera-preview')[0];
+	const kUICameraErrorToast = $('#qr-camera-error-toast');
+	const kUIDecodedDialog = $('#qr-decoded-dialog');
+	const kUIDecodedText = $('#qr-decoded-text');
+	const kUIDecodedType = $('#qr-decoded-type');
+	const kUIDecodedCopyButton = $('#qr-decoded-copy-button');
+	const kUIDecodedCopyToast = $('#qr-decoded-copy-toast');
+	let gCameraStream;
+	let gCameraScanning = false;
 
 	kUIDropArea.on('dragover', function (e) {
 		e.preventDefault();
@@ -30,11 +30,37 @@ $(document).ready(function () {
 		const file = e.originalEvent.dataTransfer.files[0];
 		handleImageFile(file);
 	});
-
-	fileInput.on('change', function (e) {
+	kUIFileInput.on('change', function (e) {
 		const file = e.target.files[0];
 		handleImageFile(file);
 	});
+
+	kUIScanButton.on('click', async function () {
+		if (gCameraScanning) return;
+		try {
+			gCameraStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
+			kUICameraPreview.srcObject = gCameraStream;
+			kUICameraContainer.removeClass(kClassHidden);
+			startCameraScan();
+		} catch (err) {
+			showCameraError();  // err.message
+		}
+	});
+	kUIStopScanButton.on('click', function () {
+		if (gCameraStream) {
+			gCameraStream.getTracks().forEach(track => track.stop());
+		}
+		gCameraStream = null;
+		stopCameraScan();
+	});
+
+	kUIDecodedCopyButton.on('click', function() {
+		navigator.clipboard.writeText(kUIDecodedText.val()).then(() => {
+			kUIDecodedCopyToast.removeClass(kClassHidden);
+			setTimeout(() => { kUIDecodedCopyToast.addClass(kClassHidden); }, 2100);
+		}).catch(err => {});
+	});
+
 	function handleImageFile(file) {
 		if (!file) return;
 
@@ -50,6 +76,66 @@ $(document).ready(function () {
 			decodeQrCode(imageUrl);
 		};
 		reader.readAsDataURL(file);
+	}
+	function showFileError(msg) {
+		kUIFileErrorToast.removeClass(kClassHidden).html(msg);
+		setTimeout(() => { kUIFileErrorToast.addClass(kClassHidden); }, 3000);
+	}
+
+	function startCameraScan() {
+		gCameraScanning = true;
+		let lastScan = 0;
+		const scanInterval = 200;
+	
+		function scanFrame(now, metadata) {
+			if (!gCameraScanning) return;
+		
+			if (now - lastScan >= scanInterval) {
+				lastScan = now;
+		
+				if (kUICameraPreview.videoWidth === 0) {
+					if (kUICameraPreview.requestVideoFrameCallback) {
+						kUICameraPreview.requestVideoFrameCallback(scanFrame);
+					} else {
+						requestAnimationFrame(scanFrame);
+					}
+					return;
+				}
+	
+				const canvas = document.createElement('canvas');
+				const ctx = canvas.getContext('2d');
+				canvas.width = kUICameraPreview.videoWidth;
+				canvas.height = kUICameraPreview.videoHeight;
+				ctx.drawImage(kUICameraPreview, 0, 0, canvas.width, canvas.height);
+				const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+				const code = jsQR(imageData.data, imageData.width, imageData.height);
+
+				if (code) {
+					if (processQRCode(code) === true) stopCameraScan();
+				}
+			}
+	
+			if (kUICameraPreview.requestVideoFrameCallback) {
+				kUICameraPreview.requestVideoFrameCallback(scanFrame);
+			} else {
+				requestAnimationFrame(scanFrame);
+			}
+		}
+	
+		if (kUICameraPreview.requestVideoFrameCallback) {
+			kUICameraPreview.requestVideoFrameCallback(scanFrame);
+		} else {
+			requestAnimationFrame(scanFrame);
+		}
+	}
+	function stopCameraScan() {
+		gCameraScanning = false;
+		if (!kUICameraContainer.hasClass(kClassHidden)) kUICameraContainer.addClass(kClassHidden);
+	}
+	function showCameraError(msg) {
+		if (msg && msg.length > 0) kUICameraErrorToast.html(msg);
+		kUICameraErrorToast.removeClass(kClassHidden);
+		setTimeout(() => { kUICameraErrorToast.addClass(kClassHidden); }, 4200);
 	}
 
 	function decodeQrCode(imageUrl) {
@@ -72,106 +158,18 @@ $(document).ready(function () {
 			showFileError('<span class="fw-bold">Could Not Open Image File.</span><br />Please upload a PNG, JPEG, GIF, or WEBP image.');
 		}
 	}
-
-	function showFileError(msg) {
-		fileError.removeClass(kClassHidden).html(msg);
-		setTimeout(() => { fileError.addClass(kClassHidden); }, 3000);
-	}
-	function showCameraError(msg) {
-		if (msg && msg.length > 0) cameraError.html(msg);
-		cameraError.removeClass(kClassHidden);
-		setTimeout(() => { cameraError.addClass(kClassHidden); }, 4200);
-	}
-
-	scanButton.on('click', async function () {
-		if (scanning) return;
-		try {
-			stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
-			cameraPreview.srcObject = stream;
-			cameraContainer.removeClass(kClassHidden);
-			startCameraScan();
-		} catch (err) {
-			showCameraError();  // err.message
-		}
-	});
-	stopScanButton.on('click', function () {
-		if (stream) {
-			stream.getTracks().forEach(track => track.stop());
-		}
-		stream = null;
-		stopCameraScan();
-	});
-
-	modalCopyButton.on('click', function() {
-		navigator.clipboard.writeText(modalDecodedText.val()).then(() => {
-			modalCopyNotification.removeClass(kClassHidden);
-			setTimeout(() => { modalCopyNotification.addClass(kClassHidden); }, 2100);
-		}).catch(err => {});
-	});
-
-	function startCameraScan() {
-		scanning = true;
-		let lastScan = 0;
-		const scanInterval = 200;
-	
-		function scanFrame(now, metadata) {
-			if (!scanning) return;
-		
-			if (now - lastScan >= scanInterval) {
-				lastScan = now;
-		
-				if (cameraPreview.videoWidth === 0) {
-					if (cameraPreview.requestVideoFrameCallback) {
-						cameraPreview.requestVideoFrameCallback(scanFrame);
-					} else {
-						requestAnimationFrame(scanFrame);
-					}
-					return;
-				}
-	
-				const canvas = document.createElement('canvas');
-				const ctx = canvas.getContext('2d');
-				canvas.width = cameraPreview.videoWidth;
-				canvas.height = cameraPreview.videoHeight;
-				ctx.drawImage(cameraPreview, 0, 0, canvas.width, canvas.height);
-				const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-				const code = jsQR(imageData.data, imageData.width, imageData.height);
-
-				if (code) {
-					if (processQRCode(code) === true) stopCameraScan();
-				}
-			}
-	
-			if (cameraPreview.requestVideoFrameCallback) {
-				cameraPreview.requestVideoFrameCallback(scanFrame);
-			} else {
-				requestAnimationFrame(scanFrame);
-			}
-		}
-	
-		if (cameraPreview.requestVideoFrameCallback) {
-			cameraPreview.requestVideoFrameCallback(scanFrame);
-		} else {
-			requestAnimationFrame(scanFrame);
-		}
-	}
-	function stopCameraScan() {
-		scanning = false;
-		if (!cameraContainer.hasClass(kClassHidden)) cameraContainer.addClass(kClassHidden);
-	}
-
 	function processQRCode(code) {
 		if (code) {
 			const codeData = code.data;
 			if (codeData.length > 0) {
 				const [codeType, codeName] = guessQrCodeType(codeData);
-				modalQrCodeType.val(codeName);
+				kUIDecodedType.val(codeName);
 				if (['url', 'call', 'sms', 'whatsapp', 'email', 'gmail', 'gEvent', 'location', 'paypal', 'crypto'].includes(codeType)) {
-					modalDecodedText.html(`<a href="${codeData}" title="Open ${codeName}" target="_blank" rel="external noopener">${codeData}</a>`);
+					kUIDecodedText.html(`<a href="${codeData}" title="Open ${codeName}" target="_blank" rel="external noopener">${codeData}</a>`);
 				} else {
-					modalDecodedText.html(codeData);
+					kUIDecodedText.html(codeData);
 				}
-				modal.modal('show');
+				kUIDecodedDialog.modal('show');
 				return true;
 			}
 		}
