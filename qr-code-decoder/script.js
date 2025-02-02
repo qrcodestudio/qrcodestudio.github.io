@@ -1,4 +1,5 @@
 $(document).ready(function () {
+	const kClassHidden = 'visually-hidden';
 	const dropArea = $('#drop-area');
 	const fileError = $('#file-error');
 	const fileInput = $('#file-input');
@@ -14,22 +15,6 @@ $(document).ready(function () {
 	const modalCopyNotification = $('#modal-copy-notification');
 	let stream;
 	let scanning = false;
-
-	cameraPreview.addEventListener('_loadedmetadata', () => {
-		const aspectRatio = cameraPreview.videoWidth / cameraPreview.videoHeight;
-		const container = cameraPreview.parentElement;
-	
-		// Adjust container dimensions based on the video's aspect ratio
-		if (aspectRatio > 1) {
-		// Landscape orientation
-			container.style.width = '100%';
-			container.style.height = `${100 / aspectRatio}%`;
-		} else {
-		// Portrait orientation
-			container.style.width = `${100 * aspectRatio}%`;
-			container.style.height = '100%';
-		}
-	});
 
 	dropArea.on('dragover', function (e) {
 		e.preventDefault();
@@ -87,13 +72,13 @@ $(document).ready(function () {
 	}
 
 	function showFileError(msg) {
-		fileError.removeClass('visually-hidden').html(msg);
-		setTimeout(() => { fileError.addClass('visually-hidden'); }, 3000);
+		fileError.removeClass(kClassHidden).html(msg);
+		setTimeout(() => { fileError.addClass(kClassHidden); }, 3000);
 	}
 	function showCameraError(msg) {
 		if (msg && msg.length > 0) cameraError.html(msg);
-		cameraError.removeClass('visually-hidden');
-		setTimeout(() => { cameraError.addClass('visually-hidden'); }, 4200);
+		cameraError.removeClass(kClassHidden);
+		setTimeout(() => { cameraError.addClass(kClassHidden); }, 4200);
 	}
 
 	scanButton.on('click', async function () {
@@ -101,24 +86,24 @@ $(document).ready(function () {
 		try {
 			stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
 			cameraPreview.srcObject = stream;
-			cameraContainer.removeClass('visually-hidden');
+			cameraContainer.removeClass(kClassHidden);
 			startCameraScan();
 		} catch (err) {
 			showCameraError();  // err.message
 		}
 	});
 	stopScanButton.on('click', function () {
-		stopCameraScan();
 		if (stream) {
 			stream.getTracks().forEach(track => track.stop());
 		}
 		stream = null;
+		stopCameraScan();
 	});
 
 	modalCopyButton.on('click', function() {
 		navigator.clipboard.writeText(modalDecodedText.val()).then(() => {
-			modalCopyNotification.removeClass('visually-hidden');
-			setTimeout(() => { modalCopyNotification.addClass('visually-hidden'); }, 2100);
+			modalCopyNotification.removeClass(kClassHidden);
+			setTimeout(() => { modalCopyNotification.addClass(kClassHidden); }, 2100);
 		}).catch(err => {});
 	});
 
@@ -171,7 +156,7 @@ $(document).ready(function () {
 	}
 	function stopCameraScan() {
 		scanning = false;
-		cameraContainer.addClass('visually-hidden');
+		if (!cameraContainer.hasClass(kClassHidden)) cameraContainer.addClass(kClassHidden);
 	}
 
 	function processQRCode(code) {
