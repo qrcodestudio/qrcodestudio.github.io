@@ -405,7 +405,7 @@ $(document).ready(function () {
 		kUIHistoryContainer.empty().html(html);
 	}
 
-	const utilDateCode = (offset) => {
+	function utilDateCode(offset) {
 		const timestamp = Date.now();
 		let dt = new Date(timestamp - offset * 24 * 60 * 60 * 1000);
 		const year = dt.getFullYear();
@@ -413,7 +413,7 @@ $(document).ready(function () {
 		const day = String(dt.getDate()).padStart(2, '0');
 		return `${year}-${month}-${day}`;
 	};
-	const utilQRName = (type) => {
+	function utilQRName(type) {
 		return {
 			url: 'Link',
 			vCard: 'vCard',
