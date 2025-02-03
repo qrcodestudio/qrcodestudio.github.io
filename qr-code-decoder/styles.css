@@ -16,5 +16,37 @@
 	max-height: 100%;
 }
 .qr-height-300px { height: 300px; }
-.qr-zindex-2047 { z-index: 2047; }
-.qr-zindex-2046 { z-index: 2046; }
+.qr-zindex-share-icon { z-index: 2044; }
+.qr-zindex-settings-icon { z-index: 2045; }
+.qr-zindex-settings-pane { z-index: 2046; }
+.qr-zindex-result-dialog { z-index: 2047; }
+
+[data-bs-theme=dark] .qr-ui-theme-main-bg-color {
+	background-color: var(--bs-dark);
+}
+[data-bs-theme=dark] .qr-ui-theme-light-bg-color {
+	background-color: var(--bs-black);
+}
+[data-bs-theme=light] .qr-ui-theme-main-bg-color {
+	background-color: var(--bs-white);
+}
+[data-bs-theme=light] .qr-ui-theme-light-bg-color {
+	background-color: var(--bs-light);
+}
+
+.qr-icon-camera {
+	display: inline-block;
+	width: 21px;
+	height: 21px;
+	background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="currentColor" class="bi bi-camera" viewBox="0 0 16 16"><path d="M15 12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h1.172a3 3 0 0 0 2.12-.879l.83-.828A1 1 0 0 1 6.827 3h2.344a1 1 0 0 1 .707.293l.828.828A3 3 0 0 0 12.828 5H14a1 1 0 0 1 1 1zM2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4z"/><path d="M8 11a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5m0 1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7M3 6.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0"/></svg>');
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+.qr-icon-file {
+	display: inline-block;
+	width: 21px;
+	height: 21px;
+	background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="currentColor" class="bi bi-file-earmark-image" viewBox="0 0 16 16"><path d="M6.502 7a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3"/><path d="M14 14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zM4 1a1 1 0 0 0-1 1v10l2.224-2.224a.5.5 0 0 1 .61-.075L8 11l2.157-3.02a.5.5 0 0 1 .76-.063L13 10V4.5h-2A1.5 1.5 0 0 1 9.5 3V1z"/></svg>');
+	background-repeat: no-repeat;
+	background-size: contain;
+}
