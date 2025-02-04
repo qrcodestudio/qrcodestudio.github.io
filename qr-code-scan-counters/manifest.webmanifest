@@ -1,0 +1,39 @@
+{
+	"short_name": "QR Code Scan Counters",
+	"name": "QR Code Scan Counters",
+	"description": "Explore our live QR Code Scan Counters featuring estimates of scans since page open, daily, monthly, and yearly counts. Discover fun facts and engaging insights about QR Code scanning statistics, perfect for enthusiasts and curious minds.",
+	"categories": ["utilities"],
+	"lang": "en-GB",
+	"icons": [
+		{
+			"src": "/qr-code-scan-counters/media/app/qrcodescancounters-icon-144.png",
+			"type": "image/png",
+			"sizes": "144x144",
+			"purpose": "any maskable"
+		},
+		{
+			"src": "/qr-code-scan-counters/media/app/qrcodescancounters-icon-180.png",
+			"type": "image/png",
+			"sizes": "180x180",
+			"purpose": "any maskable"
+		},
+		{
+			"src": "/qr-code-scan-counters/media/app/qrcodescancounters-icon-192.png",
+			"type": "image/png",
+			"sizes": "192x192",
+			"purpose": "any maskable"
+		},
+		{
+			"src": "/qr-code-scan-counters/media/app/qrcodescancounters-icon-512.png",
+			"type": "image/png",
+			"sizes": "512x512",
+			"purpose": "any maskable"
+		}
+	],
+	"scope": "https://qrcodestudio.app/qr-code-scan-counters/",
+	"start_url": "/qr-code-scan-counters/?source=pwa",
+	"background_color": "#ffffff",
+	"theme_color": "#0d6efd",
+	"display": "standalone",
+	"orientation": "any"
+}

@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>QR Code Scan Counters - Live Tracking & Fun Statistics | QR Code Studio</title>
+	<meta name="description" content="Explore our live QR Code Scan Counters featuring estimates of scans since page open, daily, monthly, and yearly counts. Discover fun facts and engaging insights about QR Code scanning statistics, perfect for enthusiasts and curious minds.">
+	<link rel="canonical" href="https://qrcodestudio.app/qr-code-scan-counters/">
+	<link rel="icon" type="image/png" href="/media/qrcodestudioapp-logo-32.png" sizes="32x32">
+	<link rel="shortcut icon" href="/favicon.ico">
+	<meta property="og:title" content="QR Code Scan Counters - Live Tracking & Fun Statistics | QR Code Studio">
+	<meta property="og:description" content="Explore our live QR Code Scan Counters featuring estimates of scans since page open, daily, monthly, and yearly counts. Discover fun facts and engaging insights about QR Code scanning statistics, perfect for enthusiasts and curious minds.">
+	<meta property="og:image" content="https://qrcodestudio.app/qr-code-scan-counters/media/qr-code-scan-counters-og.webp">
+	<meta property="og:url" content="https://qrcodestudio.app/qr-code-scan-counters/">
+	<meta property="og:type" content="website">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:title" content="QR Code Scan Counters - Live Tracking & Fun Statistics | QR Code Studio">
+	<meta name="twitter:description" content="Explore our live QR Code Scan Counters featuring estimates of scans since page open, daily, monthly, and yearly counts. Discover fun facts and engaging insights about QR Code scanning statistics, perfect for enthusiasts and curious minds.">
+	<meta name="twitter:image" content="https://qrcodestudio.app/qr-code-scan-counters/media/qr-code-scan-counters-og.webp">
+	<meta name="twitter:url" content="https://qrcodestudio.app/qr-code-scan-counters/">
+	<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net https://code.jquery.com 'unsafe-inline'; style-src 'self' https://cdn.jsdelivr.net; img-src 'self' data:; font-src 'self' https://cdn.jsdelivr.net; connect-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; ">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+	<link rel="stylesheet" href="styles.css">
+	<!--  PWA  -->
+	<link rel="manifest" href="/qr-code-scan-counters/manifest.webmanifest">
+	<meta name="application-name" content="QR Code Scan Counters">
+	<link rel="icon" sizes="192x192" href="/qr-code-scan-counters/media/app/qrcodescancounters-icon-192.png">
+	<meta name="theme-color" content="#0d6efd">
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="white">
+	<meta name="apple-mobile-web-app-title" content="QR Code Scan Counters">
+	<link rel="apple-touch-icon" sizes="180x180" href="/qr-code-scan-counters/media/app/qrcodescancounters-icon-180.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="/qr-code-scan-counters/media/app/qrcodescancounters-icon-152.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="/qr-code-scan-counters/media/app/qrcodescancounters-icon-120.png">
+	<link rel="apple-touch-startup-image" href="/qr-code-scan-counters/media/app/qrcodescancounters-launch-1242x2688.png">
+	<link rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3)" href="/qr-code-scan-counters/media/app/qrcodescancounters-launch-1242x2688.png">
+	<link rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)" href="/qr-code-scan-counters/media/app/qrcodescancounters-launch-828x1792.png">
+	<link rel="apple-touch-startup-image" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)" href="/qr-code-scan-counters/media/app/qrcodescancounters-launch-1125x2436.png">
+	<link rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3)" href="/qr-code-scan-counters/media/app/qrcodescancounters-launch-1242x2208.png">
+	<link rel="apple-touch-startup-image" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)" href="/qr-code-scan-counters/media/app/qrcodescancounters-launch-750x1334.png">
+	<link rel="apple-touch-startup-image" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)" href="/qr-code-scan-counters/media/app/qrcodescancounters-launch-2048x2732.png">
+	<link rel="apple-touch-startup-image" media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)" href="/qr-code-scan-counters/media/app/qrcodescancounters-launch-1668x2388.png">
+	<link rel="apple-touch-startup-image" media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)" href="/qr-code-scan-counters/media/app/qrcodescancounters-launch-1668x2224.png">
+	<link rel="apple-touch-startup-image" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)" href="/qr-code-scan-counters/media/app/qrcodescancounters-launch-1536x2048.png">
+	<meta name="msapplication-TileImage" content="/qr-code-scan-counters/media/app/qrcodescancounters-icon-144.png">
+	<meta name="msapplication-TileColor" content="#0d6efd">
+	<!--  Schema.org  -->
+	<script type="application/ld+json">
+{
+	"@context": "https://schema.org",
+	"@type": "WebPage",
+	"name": "QR Code Scan Counters - Live Tracking & Fun Statistics",
+	"url": "https://qrcodestudio.app/qr-code-scan-counters/",
+	"mainEntityOfPage": {
+		"@type": "SoftwareApplication",
+		"@id": "https://qrcodestudio.app/qr-code-scan-counters/#softwareapp"
+	},
+	"isPartOf": {
+		"@type": "WebSite",
+		"@id": "https://qrcodestudio.app/#website"
+	},
+	"primaryImageOfPage": {
+		"@type": "ImageObject",
+		"url": "https://qrcodestudio.app/qr-code-scan-counters/media/qr-code-scan-counters-screenshot.webp",
+		"width": "1172",
+		"height": "974",
+		"caption": "QR Code Scan Counters Online Interface Preview"
+	}
+}
+	</script>
+	<script type="application/ld+json">
+{
+	"@context": "https://schema.org",
+	"@type": "WebSite",
+	"name": "QR Code Studio App",
+	"url": "https://qrcodestudio.app/",
+	"description": "Everything for QR Codes - QR Codes for Everything."
+}
+	</script>
+	<script type="application/ld+json">
+{
+	"@context": "https://schema.org",
+	"@type": "BreadcrumbList",
+	"itemListElement": [
+		{
+			"@type": "ListItem",
+			"position": 1,
+			"name": "QR Code Studio",
+			"item": "https://qrcodestudio.app"
+		},
+		{
+			"@type": "ListItem",
+			"position": 2,
+			"name": "QR Code Tools",
+			"item": "https://qrcodestudio.app/tools/"
+		},
+		{
+			"@type": "ListItem",
+			"position": 3,
+			"name": "QR Code Scan Counters",
+			"item": "https://qrcodestudio.app/qr-code-scan-counters/"
+		}
+	]
+}
+	</script>
+	<script type="application/ld+json">
+{
+	"@context": "https://schema.org",
+	"@type": "Organization",
+	"name": "QR Code Studio App",
+	"url": "https://qrcodestudio.app/",
+	"description": "Everything for QR Codes - QR Codes for Everything.",
+	"logo": {
+		"@type": "ImageObject",
+		"url": "https://qrcodestudio.app/media/qrcodestudioapp-logo-256.webp",
+		"width": "256",
+		"height": "256",
+		"caption": "QR Code Studio App - Professional QR Code Tools"
+	},
+	"sameAs": [
+		"https://twitter.com/yourhandle",
+		"https://linkedin.com/company/yourcompany"
+	]
+}
+	</script>
+</head>
+<body class="qr-ui-theme-light-bg-color">
+	<header>
+		<nav class="navbar navbar-expand-lg bg-primary text-bg-primary">
+			<div class="container hstack gap-4 justify-content-start align-items-start flex-nowrap py-2">
+				<a href="https://qrcodestudio.app/" title="QR Code Studio App home">
+					<img class="img-fluid" src="/media/qrcodestudioapp-logo-256.webp" alt="QR Code Studio App – Free Online QR Code Tools" aria-label="Free Online QR Code Scan Counters" width="96" height="96">
+				</a>
+				<h1 class="mx-0 my-auto pe-5">QR Code Scan Counters - Live Tracking & Fun Statistics</h1>
+			</div>
+		</nav>
+		<div class="qr-zindex-settings-icon position-fixed top-0 end-0 me-2 mt-2 me-md-3 mt-md-3 shadow">
+			<button class="btn btn-warning border border-1 rounded-0 p-2" data-bs-toggle="offcanvas" href="#qr-settings-pane" role="button" aria-controls="qr-settings-pane" aria-label="Settings">
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-gear-wide-connected" viewBox="0 0 16 16">
+					<path d="M7.068.727c.243-.97 1.62-.97 1.864 0l.071.286a.96.96 0 0 0 1.622.434l.205-.211c.695-.719 1.888-.03 1.613.931l-.08.284a.96.96 0 0 0 1.187 1.187l.283-.081c.96-.275 1.65.918.931 1.613l-.211.205a.96.96 0 0 0 .434 1.622l.286.071c.97.243.97 1.62 0 1.864l-.286.071a.96.96 0 0 0-.434 1.622l.211.205c.719.695.03 1.888-.931 1.613l-.284-.08a.96.96 0 0 0-1.187 1.187l.081.283c.275.96-.918 1.65-1.613.931l-.205-.211a.96.96 0 0 0-1.622.434l-.071.286c-.243.97-1.62.97-1.864 0l-.071-.286a.96.96 0 0 0-1.622-.434l-.205.211c-.695.719-1.888.03-1.613-.931l.08-.284a.96.96 0 0 0-1.186-1.187l-.284.081c-.96.275-1.65-.918-.931-1.613l.211-.205a.96.96 0 0 0-.434-1.622l-.286-.071c-.97-.243-.97-1.62 0-1.864l.286-.071a.96.96 0 0 0 .434-1.622l-.211-.205c-.719-.695-.03-1.888.931-1.613l.284.08a.96.96 0 0 0 1.187-1.186l-.081-.284c-.275-.96.918-1.65 1.613-.931l.205.211a.96.96 0 0 0 1.622-.434zM12.973 8.5H8.25l-2.834 3.779A4.998 4.998 0 0 0 12.973 8.5m0-1a4.998 4.998 0 0 0-7.557-3.779l2.834 3.78zM5.048 3.967l-.087.065zm-.431.355A4.98 4.98 0 0 0 3.002 8c0 1.455.622 2.765 1.615 3.678L7.375 8zm.344 7.646.087.065z"/>
+				</svg>
+			</button>
+		</div>
+		<div class="qr-zindex-settings-pane offcanvas offcanvas-end" tabindex="-1" id="qr-settings-pane" aria-labelledby="qr-settings-label">
+			<div class="offcanvas-header bg-warning text-bg-warning py-2 d-flex flex-column">
+				<div class="hstack justify-content-between align-items-center">
+					<div class="offcanvas-title fw-bold fs-4" id="qr-settings-label">Preferences</div>
+					<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+				</div>
+				<div class="vstack gap-2 border border-warning-subtle border-1 border-start-0 border-end-0 border-bottom-0 pt-3 mt-1">
+					<div class="hstack gap-3 w-100">
+						<label class="form-check-label" for="qr-ui-prefs-darkmode">Dark Mode</label>
+						<div class="ms-auto">
+							<div class="input-group rounded-0">
+								<input type="radio" class="btn-check" name="qr-ui-prefs-darkmode" value="auto" id="qr-ui-prefs-darkmode-auto" autocomplete="off" checked>
+								<label class="btn btn-sm btn-outline-secondary rounded-0" for="qr-ui-prefs-darkmode-auto">Auto</label>
+								<input type="radio" class="btn-check" name="qr-ui-prefs-darkmode" value="on" id="qr-ui-prefs-darkmode-on" autocomplete="off">
+								<label class="btn btn-sm btn-outline-secondary rounded-0" for="qr-ui-prefs-darkmode-on">On</label>
+								<input type="radio" class="btn-check" name="qr-ui-prefs-darkmode" value="off" id="qr-ui-prefs-darkmode-off" autocomplete="off">
+								<label class="btn btn-sm btn-outline-secondary rounded-0" for="qr-ui-prefs-darkmode-off">Off</label>
+							</div>
+						</div>
+					</div>
+					<div class="hstack gap-3 w-100">
+						<label class="form-check-label" for="qr-ui-prefs-nofluff">Hide Fluff</label>
+						<div class="ms-auto">
+							<div class="form-check form-switch form-control-lg m-0 p-0 d-flex justify-content-end">
+								<input class="form-check-input" type="checkbox" role="switch" id="qr-ui-prefs-nofluff">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="qr-ui-theme-light-bg-color offcanvas-body vstack gap-3">
+				<div class="fw-bold fs-5 mb-1">Anniversaries</div>
+				<div id="qr-anniversaries-container"></div>
+			</div>
+		</div>
+	</header>
+	<main class="container-fluid vstack gap-5 p-0 my-4 my-lg-5">
+		<div class="qr-ui-fluff container vstack gap-4">
+			<div>
+				Welcome to our QR Code Scan Counters page! Here, you'll find a live display of estimated QR Code scans tracked since your visit began, as well as fun, up-to-date counters for scans today, this month, and this year. This page is designed purely for entertainment and curiosity, providing a fascinating look at how QR Code scanning trends can be visualized and engaged with, without any serious tracking or analytics for campaign performance.
+			</div>
+		</div>
+		<div class="qr-ui-fluff container">
+			<div class="hstack gap-2 align-items-start text-primary-emphasis bg-primary-subtle border border-3 border-primary-subtle px-3 py-2">
+				<div id="qr-fun-fact-label" class="fw-bold"></div>
+				<div id="qr-fun-fact-content"></div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="input-group rounded-0 mb-4">
+				<span class="input-group-text rounded-0 border-0 ps-0 pe-4"><span class="fw-bold fs-1 lh-1">❓ </span><h2 class="text-center p-0 m-0">How Many QR Codes Were Scanned In</h2></span>
+				<select id="qr-scan-area-selector" class="form-select form-select-lg rounded-0"></select>
+				<span class="input-group-text rounded-0 border-0 ps-2 pe-0 fw-bold fs-1 lh-1">❓</span>
+			</div>
+			<div class="row g-4">
+				<div class="col-md-4">
+					<div class="qr-ui-theme-main-bg-color card h-100 rounded-0 text-center vstack">
+						<div id="qr-scan-counter-page" class="font-monospace fw-bold fs-2 p-3">0</div>
+						<div class="mt-auto text-bg-secondary bg-secondary px-3 py-2">Since You Came Here</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="qr-ui-theme-main-bg-color card h-100 rounded-0 text-center vstack">
+						<div id="qr-scan-counter-month" class="font-monospace fw-bold fs-2 p-3">0</div>
+						<div class="mt-auto text-bg-secondary bg-secondary px-3 py-2">This Month</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="qr-ui-theme-main-bg-color card h-100 rounded-0 text-center vstack">
+						<div id="qr-scan-counter-year" class="font-monospace fw-bold fs-2 p-3">0</div>
+						<div class="mt-auto text-bg-secondary bg-secondary px-3 py-2">This Year</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="bg-dark text-bg-dark bg-opacity-75">
+			<div class="container vstack gap-3 pt-3 pb-4 pt-lg-4 pb-lg-5">
+				<h2 class="text-warning m-0">QR Code Scan Counters For Your Anniversaries</h2>
+				<div class="qr-ui-fluff">Whether you're using a phone, tablet, or computer, our <strong>free online QR code scanner</strong> simplifies decoding. Perfect for users who want to <strong>decode QR codes without app</strong> installations!</div>
+				<div class="row g-4">
+					<div class="col-md-4">
+						<div class="qr-ui-theme-main-bg-color card h-100 rounded-0 text-center vstack">
+							<div class="vstack px-3 pt-2 pb-3">
+								<div id="qr-scan-counter-anniversary-0-from" class="font-monospace fw-bold fs-2 p-0">0</div>
+								<div class="small text-uppercase">since last anniversary</div>
+								<div><hr class="mt-2 mb-1" /></div>
+								<div id="qr-scan-counter-anniversary-0-to" class="font-monospace fw-bold fs-2 p-0">0</div>
+								<div class="small text-uppercase">until next anniversary</div>
+							</div>
+							<div>
+								<div class="input-group">
+									<span class="bg-warning text-bg-warning input-group-text rounded-0 border border-dark border-1 border-start-0 border-end-0 border-bottom-0 col-5">Anniversary:</span>
+									<input data-qr-anniversary-idx="0" class="qr-anniversary-name bg-warning-subtle text-warning-emphasis form-control border border-dark border-1 border-start-0 border-end-0 border-bottom-0 rounded-0" type="text" />
+								</div>
+								<div class="input-group">
+									<span class="bg-warning text-bg-warning input-group-text rounded-0 border border-secondary border-1 border-start-0 border-end-0 border-bottom-0 col-5">Date:</span>
+									<input data-qr-anniversary-idx="0" class="qr-anniversary-date bg-warning-subtle text-warning-emphasis form-control border border-secondary border-1 border-start-0 border-end-0 border-bottom-0 rounded-0" type="date" />
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="qr-ui-theme-main-bg-color card h-100 rounded-0 text-center vstack">
+							<div class="vstack px-3 pt-2 pb-3">
+								<div id="qr-scan-counter-anniversary-1-from" class="font-monospace fw-bold fs-2 p-0">0</div>
+								<div class="small text-uppercase">since last anniversary</div>
+								<div><hr class="mt-2 mb-1" /></div>
+								<div id="qr-scan-counter-anniversary-1-to" class="font-monospace fw-bold fs-2 p-0">0</div>
+								<div class="small text-uppercase">until next anniversary</div>
+							</div>
+							<div>
+								<div class="input-group">
+									<span class="bg-warning text-bg-warning input-group-text rounded-0 border border-dark border-1 border-start-0 border-end-0 border-bottom-0 col-5">Anniversary:</span>
+									<input data-qr-anniversary-idx="1" class="qr-anniversary-name bg-warning-subtle text-warning-emphasis form-control border border-dark border-1 border-start-0 border-end-0 border-bottom-0 rounded-0" type="text" />
+								</div>
+								<div class="input-group">
+									<span class="bg-warning text-bg-warning input-group-text rounded-0 border border-secondary border-1 border-start-0 border-end-0 border-bottom-0 col-5">Date:</span>
+									<input data-qr-anniversary-idx="1" class="qr-anniversary-date bg-warning-subtle text-warning-emphasis form-control border border-secondary border-1 border-start-0 border-end-0 border-bottom-0 rounded-0" type="date" />
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="qr-ui-theme-main-bg-color card h-100 rounded-0 text-center vstack">
+							<div class="vstack px-3 pt-2 pb-3">
+								<div id="qr-scan-counter-anniversary-2-from" class="font-monospace fw-bold fs-2 p-0">0</div>
+								<div class="small text-uppercase">since last anniversary</div>
+								<div><hr class="mt-2 mb-1" /></div>
+								<div id="qr-scan-counter-anniversary-2-to" class="font-monospace fw-bold fs-2 p-0">0</div>
+								<div class="small text-uppercase">until next anniversary</div>
+							</div>
+							<div>
+								<div class="input-group">
+									<span class="bg-warning text-bg-warning input-group-text rounded-0 border border-dark border-1 border-start-0 border-end-0 border-bottom-0 col-5">Anniversary:</span>
+									<input data-qr-anniversary-idx="2" class="qr-anniversary-name bg-warning-subtle text-warning-emphasis form-control border border-dark border-1 border-start-0 border-end-0 border-bottom-0 rounded-0" type="text" />
+								</div>
+								<div class="input-group">
+									<span class="bg-warning text-bg-warning input-group-text rounded-0 border border-secondary border-1 border-start-0 border-end-0 border-bottom-0 col-5">Date:</span>
+									<input data-qr-anniversary-idx="2" class="qr-anniversary-date bg-warning-subtle text-warning-emphasis form-control border border-secondary border-1 border-start-0 border-end-0 border-bottom-0 rounded-0" type="date" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<a href="/creator/" title="QR Code Studio Creator" class="btn btn-lg btn-danger border-danger-subtle border-3 mt-3 p-3 rounded-0 text-center text-decoration-none">
+					Never let anyone miss your important date: <strong>Create vEvent QR Code for your anniversary.</strong> Share it either digitally or on a physical product!
+				</a>
+			</div>
+		</div>
+		<div class="qr-ui-fluff container vstack gap-3">
+			<h2 class="m-0">QR Code Scan Fun Facts</h2>
+			<div class="list-group rounded-0">
+				<div class="qr-ui-theme-main-bg-color list-group-item py-3 hstack gap-2 align-items-start">
+					<div data-qr-funfact-label="1" class="fw-bold">Did You Know:</div>
+					<div data-qr-funfact-content="0">The average QR code receives 27 scans in its lifetime.</div>
+				</div>
+				<div class="qr-ui-theme-main-bg-color list-group-item py-3 hstack gap-2 align-items-start">
+					<div data-qr-funfact-label="0" class="fw-bold">Fun Fact:</div>
+					<div data-qr-funfact-content="0">Global QR code scans quadrupled in 2025, reaching 41.77 million.</div>
+				</div>
+				<div class="qr-ui-theme-main-bg-color list-group-item py-3 hstack gap-2 align-items-start">
+					<div data-qr-funfact-label="1" class="fw-bold">Did You Know:</div>
+					<div data-qr-funfact-content="1">Dynamic QR codes generated by users accumulated 7,181,345 global scans between 2021 and 2025, a 433% increase over the 2021 figures.</div>
+				</div>
+				<div class="qr-ui-theme-main-bg-color list-group-item py-3 hstack gap-2 align-items-start">
+					<div data-qr-funfact-label="0" class="fw-bold">Fun Fact:</div>
+					<div data-qr-funfact-content="2">The global QR code market is set to grow at a 16.9% clip through 2030.</div>
+				</div>
+				<div class="qr-ui-theme-main-bg-color list-group-item py-3 hstack gap-2 align-items-start">
+					<div data-qr-funfact-label="1" class="fw-bold">Did You Know:</div>
+					<div data-qr-funfact-content="3">The QR code payment market is projected to reach $51 billion by 2032.</div>
+				</div>
+				<div class="qr-ui-theme-main-bg-color list-group-item py-3 hstack gap-2 align-items-start">
+					<div data-qr-funfact-label="3" class="fw-bold">Fun Fact:</div>
+					<div data-qr-funfact-content="3">The US is projected to exceed 300,000 QR code creations by the end of 2025.</div>
+				</div>
+				<div class="qr-ui-theme-main-bg-color list-group-item py-3 hstack gap-2 align-items-start">
+					<div data-qr-funfact-label="1" class="fw-bold">Did You Know:</div>
+					<div data-qr-funfact-content="3">In 2025, India accounted for 13.48% of the total global QR code scans.</div>
+				</div>
+				<div class="qr-ui-theme-main-bg-color list-group-item py-3 hstack gap-2 align-items-start">
+					<div data-qr-funfact-label="3" class="fw-bold">Fun Fact:</div>
+					<div data-qr-funfact-content="3">In 2025, 99.5 million smartphone users in the United States are foreseen to scan QR codes.</div>
+				</div>
+				<div class="qr-ui-theme-main-bg-color list-group-item py-3 hstack gap-2 align-items-start">
+					<div data-qr-funfact-label="1" class="fw-bold">Did You Know:</div>
+					<div data-qr-funfact-content="3">Business Insider says QR code scans will hit 99.5M smartphone users by 2025.</div>
+				</div>
+				<div class="qr-ui-theme-main-bg-color list-group-item py-3 hstack gap-2 align-items-start">
+					<div data-qr-funfact-label="3" class="fw-bold">Fun Fact:</div>
+					<div data-qr-funfact-content="3">The number of US consumers who scan a QR code with their smartphone is also expected to grow to over 100 million by 2025.</div>
+				</div>
+				<div class="qr-ui-theme-main-bg-color list-group-item py-3 hstack gap-2 align-items-start">
+					<div data-qr-funfact-label="1" class="fw-bold">Did You Know:</div>
+					<div data-qr-funfact-content="3">Europe’s QR payment market is projected to hit $2.3 billion by 2025.</div>
+				</div>
+				<div class="qr-ui-theme-main-bg-color list-group-item py-3 hstack gap-2 align-items-start">
+					<div data-qr-funfact-label="3" class="fw-bold">Fun Fact:</div>
+					<div data-qr-funfact-content="3">Japan’s QR code payments are projected to grow to $277 million by 2033.</div>
+				</div>
+				<div class="qr-ui-theme-main-bg-color list-group-item py-3 hstack gap-2 align-items-start">
+					<div data-qr-funfact-label="1" class="fw-bold">Did You Know:</div>
+					<div data-qr-funfact-content="3">The QR code market in China is projected to grow to $645.2 million by 2033.</div>
+				</div>
+				<div class="qr-ui-theme-main-bg-color list-group-item py-3 hstack gap-2 align-items-start">
+					<div data-qr-funfact-label="3" class="fw-bold">Fun Fact:</div>
+					<div data-qr-funfact-content="3">In 2023, Japan recorded 9.36 billion QR transactions.</div>
+				</div>
+				<div class="qr-ui-theme-main-bg-color list-group-item py-3 hstack gap-2 align-items-start">
+					<div data-qr-funfact-label="1" class="fw-bold">Did You Know:</div>
+					<div data-qr-funfact-content="3">8 QR codes are generated per minute globally.</div>
+				</div>
+				<div class="qr-ui-theme-main-bg-color list-group-item py-3 hstack gap-2 align-items-start">
+					<div data-qr-funfact-label="3" class="fw-bold">Fun Fact:</div>
+					<div data-qr-funfact-content="3">The most popular use of QR codes today is QR code payment and advertising.</div>
+				</div>
+				<div class="qr-ui-theme-main-bg-color list-group-item py-3 hstack gap-2 align-items-start">
+					<div data-qr-funfact-label="1" class="fw-bold">Did You Know:</div>
+					<div data-qr-funfact-content="3">Global usage of QR code payments is expected to surpass 2 billion users by 2025.</div>
+				</div>
+				<div class="qr-ui-theme-main-bg-color list-group-item py-3 hstack gap-2 align-items-start">
+					<div data-qr-funfact-label="3" class="fw-bold">Fun Fact:</div>
+					<div data-qr-funfact-content="3">47% year-on-year QR code generation growth.</div>
+				</div>
+				<div class="qr-ui-theme-main-bg-color list-group-item py-3 hstack gap-2 align-items-start">
+					<div data-qr-funfact-label="1" class="fw-bold">Did You Know:</div>
+					<div data-qr-funfact-content="3">The most popular QR code solution is URL QR codes, with 54.33% of the total dynamic QR codes created being URL QR codes.</div>
+				</div>
+				<div class="qr-ui-theme-main-bg-color list-group-item py-3 hstack gap-2 align-items-start">
+					<div data-qr-funfact-label="3" class="fw-bold">Fun Fact:</div>
+					<div data-qr-funfact-content="3">The 33-46 age group represents the largest proportion of QR code users, accounting for 41% of users.</div>
+				</div>
+				<div class="qr-ui-theme-main-bg-color list-group-item py-3 hstack gap-2 align-items-start">
+					<div data-qr-funfact-label="1" class="fw-bold">Did You Know:</div>
+					<div data-qr-funfact-content="3">57% of individuals aged 18-34 frequently use QR codes.</div>
+				</div>
+				<div class="qr-ui-theme-main-bg-color list-group-item py-3 hstack gap-2 align-items-start">
+					<div data-qr-funfact-label="3" class="fw-bold">Fun Fact:</div>
+					<div data-qr-funfact-content="3">57% of QR code users are women.</div>
+				</div>
+				<div class="qr-ui-theme-main-bg-color list-group-item py-3 hstack gap-2 align-items-start">
+					<div data-qr-funfact-label="1" class="fw-bold">Did You Know:</div>
+					<div data-qr-funfact-content="3">84% of smartphone users have scanned a QR code at least once.</div>
+				</div>
+				<div class="qr-ui-theme-main-bg-color list-group-item py-3 hstack gap-2 align-items-start">
+					<div data-qr-funfact-label="3" class="fw-bold">Fun Fact:</div>
+					<div data-qr-funfact-content="3">79% prefer products with scannable codes.</div>
+				</div>
+				<div class="qr-ui-theme-main-bg-color list-group-item py-3 hstack gap-2 align-items-start">
+					<div data-qr-funfact-label="1" class="fw-bold">Did You Know:</div>
+					<div data-qr-funfact-content="3">58% of consumers pay with QR codes when dining out or grocery shopping.</div>
+				</div>
+				<div class="qr-ui-theme-main-bg-color list-group-item py-3 hstack gap-2 align-items-start">
+					<div data-qr-funfact-label="3" class="fw-bold">Fun Fact:</div>
+					<div data-qr-funfact-content="3">72% of healthcare institutions have adopted QR codes.</div>
+				</div>
+				<div class="qr-ui-theme-main-bg-color list-group-item py-3 hstack gap-2 align-items-start">
+					<div data-qr-funfact-label="1" class="fw-bold">Did You Know:</div>
+					<div data-qr-funfact-content="3">94% said QR codes are easy and preferred for accessing healthcare info.</div>
+				</div>
+				<div class="qr-ui-theme-main-bg-color list-group-item py-3 hstack gap-2 align-items-start">
+					<div data-qr-funfact-label="3" class="fw-bold">Fun Fact:</div>
+					<div data-qr-funfact-content="3">45% of brands integrate QR codes in marketing campaigns.</div>
+				</div>
+				<div class="qr-ui-theme-main-bg-color list-group-item py-3 hstack gap-2 align-items-start">
+					<div data-qr-funfact-label="1" class="fw-bold">Did You Know:</div>
+					<div data-qr-funfact-content="3">70% of hotels use QR codes for easier reservation.</div>
+				</div>
+			</div>
+		</div>
+		<hr class="qr-ui-fluff p-0 m-0" />
+		<div class="container"><strong>Disclaimer:</strong> The counters displayed on this page are for educational and illustrative purposes only, showcasing examples of how QR code scan data could be presented. They do not reflect any specific real-world data or provide live statistics.</div>
+	</main>
+	<footer class="bg-dark text-white py-4">
+		<div class="container text-center">
+			<p class="mb-0">&copy; 2025 <a href="/" title="QR Code Studio App home" class="link-warning text-decoration-none">QR Code Studio App</a><span class="visually-hidden"> QRCode Decoder Online</span>. All rights reserved.</p>
+		</div>
+		<div class="qr-zindex-share-icon position-fixed bottom-0 end-0 me-2 mb-2 me-md-3 mb-md-3 shadow">
+			<button class="btn btn-danger border border-1 rounded-0 p-2" onclick="window.navigator.share({url:window.document.location,text:window.document.title,title:window.document.title})" aria-label="Share This Page">
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-white m-1" viewBox="0 0 16 16">
+					<path d="M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.5 2.5 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5"/>
+				</svg>
+			</button>
+		</div>
+	</footer>
+	<script rel="preconnect" src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+	<script rel="preconnect" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+	<script type="module" src="script.js"></script>
+</body>
+</html>

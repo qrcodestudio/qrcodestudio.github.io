@@ -3,4 +3,7 @@
 	<sitemap>
 		<loc>https://qrcodestudio.app/qr-code-decoder/sitemap.xml</loc>
 	</sitemap>
+	<sitemap>
+		<loc>https://qrcodestudio.app/qr-code-scan-counters/sitemap.xml</loc>
+	</sitemap>
 </sitemapindex>

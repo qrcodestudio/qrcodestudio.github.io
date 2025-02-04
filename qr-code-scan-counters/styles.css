@@ -1,0 +1,16 @@
+.qr-zindex-share-icon { z-index: 2044; }
+.qr-zindex-settings-icon { z-index: 2045; }
+.qr-zindex-settings-pane { z-index: 2046; }
+
+[data-bs-theme=dark] .qr-ui-theme-main-bg-color {
+	background-color: var(--bs-dark);
+}
+[data-bs-theme=dark] .qr-ui-theme-light-bg-color {
+	background-color: var(--bs-black);
+}
+[data-bs-theme=light] .qr-ui-theme-main-bg-color {
+	background-color: var(--bs-white);
+}
+[data-bs-theme=light] .qr-ui-theme-light-bg-color {
+	background-color: var(--bs-light);
+}
