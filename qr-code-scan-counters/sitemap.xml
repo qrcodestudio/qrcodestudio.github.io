@@ -8,7 +8,7 @@
 			<image:title>QR Code Studio App Logo</image:title>
 		</image:image>
 		<video:video>
-			<video:thumbnail_loc>https://qrcodestudio.app/qr-code-scan-counters/media/qr-code-scan-counters-video-thumbnail.webp</video:thumbnail_loc>
+			<video:thumbnail_loc>https://qrcodestudio.app/qr-code-scan-counters/media/qrcodescancounters-video-thumbnail.webp</video:thumbnail_loc>
 			<video:title>QR Code Scan Counters - Live Tracking & Fun Statistics</video:title>
 			<video:description>Explore our live QR Code Scan Counters featuring estimates of scans since page open, daily, monthly, and yearly counts. Discover fun facts and engaging insights about QR Code scanning statistics, perfect for enthusiasts and curious minds.</video:description>
 			<video:player_loc>https://www.youtube.com/watch?v=TODO</video:player_loc>
