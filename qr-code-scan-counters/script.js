@@ -202,7 +202,11 @@ $(document).ready(function () {
 		}
 	}
 
-	function doCounters() {
+	function countersAnimationLoop() {
+		updateCounters();
+		requestAnimationFrame(countersAnimationLoop);
+	}
+	function updateCounters() {
 		const now = new Date();
 		const currentYear = now.getFullYear();
 		const firstDayOfMonth = new Date(currentYear, now.getMonth(), 1);
@@ -244,5 +248,5 @@ $(document).ready(function () {
 	initUI();
 	initFunFacts();
 	initAnniversaries();
-	setInterval(doCounters, 69);
+	countersAnimationLoop();
 });
