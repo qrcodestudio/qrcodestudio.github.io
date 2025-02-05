@@ -258,13 +258,11 @@ $(document).ready(function () {
 		return 'text';
 	}
 	function verifyURLSafety(url) {
-console.log('verifyURLSafety', url);
 		const urlObj = new URL(url);
 		if (!urlObj) return;
 		urlObj.search = '';
 		urlObj.hash = '';
 		const cleanUrl = urlObj.toString();
-console.log('verifyURLSafety cleanUrl', cleanUrl);
 
 		urlSafetyDB((readStore) => {
 			const getRequest = readStore.get(cleanUrl);
@@ -277,18 +275,17 @@ console.log('DB Object retrieved:', cleanUrl, result);
 				} else {
 					const requestBody = JSON.stringify({url : cleanUrl});
 console.log('No matching object found -> checking ...', cleanUrl, requestBody);
-					//fetch(`https://cors-anywhere.herokuapp.com/${kPrefsSafetyCheckURL}`, {
 					fetch(kPrefsSafetyCheckURL, {
 						method: 'POST',
 						mode: 'cors',
-						headers: { 'Content-Type': 'application/json', 'Accept': '*/*', 'Referer': 'https://qrcodestudio.app/qr-code-decoder/' },
+						headers: { 'Content-Type': 'application/json', 'Accept': '*/*', 'Referer': 'https://qrcodestudio.app/' },
 						body: requestBody
 					})
-					.then((response) => { console.log(response.statusText); return response.json(); })
+					.then(response => response.json())
 					.then((data) => {
-console.log(data);
+console.log('data', data);
 						urlSafetyDB((saveStore) => {
-							const newObject = { url: cleanUrl, safe: data.threatFound, description: 'TODO This is a sample.' };
+							const newObject = { url: cleanUrl, threat: data.threatFound, description: 'TODO This is a sample.' };
 							const addRequest = saveStore.add(newObject);
 							addRequest.onsuccess = () => {
 								console.log('Object added successfully.');
@@ -329,7 +326,7 @@ console.log('urlSafetyDB onerror');
 	}
 	function uiURLSafety(urlRec) {
 console.log('uiURLSafety', urlRec);
-		if (urlRec.safe === true) {
+		if (urlRec.threat === true) {
 
 		} else {
 
