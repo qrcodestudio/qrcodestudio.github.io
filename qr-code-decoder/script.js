@@ -28,6 +28,7 @@ $(document).ready(function () {
 	const kUIStatsValues = $('.qr-stats-value');
 	const kUIHistoryContainer = $('#qr-history-container');
 	const kUIHistoryTrashButton = $('#qr-history-trash-button');
+	const kUISafeOverlay = $('#qr-url-safe-overlay');
 	const kUIThreatOverlay = $('#qr-url-threat-overlay');
 	const kUIThreatMatches = $('#qr-url-threat-matches');
 	const kUIThreatDismissButton = $('#qr-url-threat-dismiss');
@@ -322,9 +323,11 @@ console.log('data', data);
 	function uiURLSafety(urlRec) {
 		if (urlRec.safe === true) {
 			if (!kUIThreatOverlay.hasClass(kClassHidden)) kUIThreatOverlay.addClass(kClassHidden);
+			kUISafeOverlay.removeClass(kClassHidden);
 		} else {
 			kUIThreatMatches.text(urlRec.threats.length > 0 ? urlRec.threats.join(', ') : 'Unknown Threat');
 			kUIThreatOverlay.removeClass(kClassHidden);
+			if (!kUISafeOverlay.hasClass(kClassHidden)) kUISafeOverlay.addClass(kClassHidden);
 		}
 	}
 
