@@ -2,6 +2,7 @@ $(document).ready(function () {
 	const kPrefsAppKey = '.QRCodeDecoder';
 	const kPrefsSafetyCheckURL = 'https://qrcodesafebrowsingcheck.qrcodestudioapp.workers.dev/';
 	const kCodeSafety = { unknown : 0, safe : 1, malicious : -1, pending : 2 };
+	const kDBStoreSafety = 'urlSafety';
 	const kQRMediaFile = 'file';
 	const kQRMediaCamera = 'camera';
 	const kClassHidden = 'visually-hidden';
@@ -270,11 +271,9 @@ $(document).ready(function () {
 			getRequest.onsuccess = (event) => {
 				const result = event.target.result;
 				if (result) {
-console.log('DB Object retrieved:', cleanUrl, result);
 					uiURLSafety(result);
 				} else {
 					const requestBody = JSON.stringify({url : cleanUrl});
-console.log('No matching object found -> checking ...', cleanUrl, requestBody);
 					fetch(kPrefsSafetyCheckURL, {
 						method: 'POST',
 						mode: 'cors',
@@ -284,45 +283,34 @@ console.log('No matching object found -> checking ...', cleanUrl, requestBody);
 					.then(response => response.json())
 					.then((data) => {
 console.log('data', data);
+						const newObject = { url: cleanUrl, threat: data.threatFound, description: 'TODO This is a sample.' };
+						uiURLSafety(newObject);
 						urlSafetyDB((saveStore) => {
-							const newObject = { url: cleanUrl, threat: data.threatFound, description: 'TODO This is a sample.' };
 							const addRequest = saveStore.add(newObject);
-							addRequest.onsuccess = () => {
-								console.log('Object added successfully.');
-								uiURLSafety(newObject);
-							};
-							addRequest.onerror = (event) => {
-								console.error('Add operation error:', event.target.error);
-							};
+							addRequest.onsuccess = () => { };
+							addRequest.onerror = () => { };
 						})
-					}).catch((error) => {
-						console.error(`Fetch error: ${error.message}`);
-					});
+					}).catch(() => { });
 				}
 			};
-			getRequest.onerror = (event) => { };
+			getRequest.onerror = () => { };
 		});
 	}
 	function urlSafetyDB(callback) {
-console.log('urlSafetyDB');
 		const request = indexedDB.open(`QRCodeStudioApp${kPrefsAppKey}`, 1);
 		request.onupgradeneeded = (event) => {
-console.log('urlSafetyDB onupgradeneeded');
 			const db = event.target.result;
-			if (!db.objectStoreNames.contains('urlSafety')) {
-				db.createObjectStore('urlSafety', { keyPath: 'url', autoIncrement: false });
+			if (!db.objectStoreNames.contains(kDBStoreSafety)) {
+				db.createObjectStore(kDBStoreSafety, { keyPath: 'url', autoIncrement: false });
 			}
 		};
 		request.onsuccess = (event) => {
-console.log('urlSafetyDB onsuccess');
 			const db = event.target.result;
-			const transaction = db.transaction('urlSafety', 'readwrite');
-			const objectStore = transaction.objectStore('urlSafety');
+			const transaction = db.transaction(kDBStoreSafety, 'readwrite');
+			const objectStore = transaction.objectStore(kDBStoreSafety);
 			callback(objectStore);
 		};
-		request.onerror = (event) => {
-console.log('urlSafetyDB onerror');
-		};
+		request.onerror = (event) => { };
 	}
 	function uiURLSafety(urlRec) {
 console.log('uiURLSafety', urlRec);
