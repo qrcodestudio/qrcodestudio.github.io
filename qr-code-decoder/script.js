@@ -281,7 +281,7 @@ console.log('No matching object found -> checking ...', cleanUrl, requestBody);
 					fetch(kPrefsSafetyCheckURL, {
 						method: 'POST',
 						mode: 'cors',
-						headers: { 'Content-Type': 'application/json', 'Accept': '*/*', 'User-Agent': 'Mozilla/5.0', 'Referer': 'https://qrcodestudio.app/qr-code-decoder/' },
+						headers: { 'Content-Type': 'application/json', 'Accept': '*/*', 'Referer': 'https://qrcodestudio.app/qr-code-decoder/' },
 						body: requestBody
 					})
 					.then((response) => { console.log(response.statusText); return response.json(); })
