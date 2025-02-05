@@ -258,11 +258,13 @@ $(document).ready(function () {
 		return 'text';
 	}
 	function verifyURLSafety(url) {
+console.log('verifyURLSafety', url);
 		const urlObj = new URL(url);
 		if (!urlObj) return;
 		urlObj.search = '';
 		urlObj.hash = '';
 		const cleanUrl = urlObj.toString();
+console.log('verifyURLSafety cleanUrl', cleanUrl);
 
 		urlSafetyDB((readStore) => {
 			const getRequest = readStore.get(cleanUrl);
@@ -270,7 +272,7 @@ $(document).ready(function () {
 			getRequest.onsuccess = (event) => {
 				const result = event.target.result;
 				if (result) {
-					console.log('DB Object retrieved:', cleanUrl, result);
+console.log('DB Object retrieved:', cleanUrl, result);
 					uiURLSafety(result);
 				} else {
 					const requestBody = JSON.stringify({url : cleanUrl});
@@ -305,20 +307,25 @@ console.log(data);
 		});
 	}
 	function urlSafetyDB(callback) {
+console.log('urlSafetyDB');
 		const request = indexedDB.open(`QRCodeStudioApp${kPrefsAppKey}`, 1);
 		request.onupgradeneeded = (event) => {
+console.log('urlSafetyDB onupgradeneeded');
 			const db = event.target.result;
 			if (!db.objectStoreNames.contains('urlSafety')) {
 				db.createObjectStore('urlSafety', { keyPath: 'url', autoIncrement: false });
 			}
 		};
 		request.onsuccess = (event) => {
+console.log('urlSafetyDB onsuccess');
 			const db = event.target.result;
 			const transaction = db.transaction('urlSafety', 'readwrite');
 			const objectStore = transaction.objectStore('urlSafety');
 			callback(objectStore);
 		};
-		request.onerror = (event) => { };
+		request.onerror = (event) => {
+console.log('urlSafetyDB onerror');
+		};
 	}
 	function uiURLSafety(urlRec) {
 console.log('uiURLSafety', urlRec);
