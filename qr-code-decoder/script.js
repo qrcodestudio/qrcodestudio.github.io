@@ -1,5 +1,7 @@
 $(document).ready(function () {
 	const kPrefsAppKey = '.QRCodeDecoder';
+	const kPrefsSafetyCheckURL = 'https://qrcodesafebrowsingcheck.qrcodestudioapp.workers.dev/';
+	const kCodeSafety = { unknown : 0, safe : 1, malicious : -1, pending : 2 };
 	const kQRMediaFile = 'file';
 	const kQRMediaCamera = 'camera';
 	const kClassHidden = 'visually-hidden';
@@ -200,11 +202,14 @@ $(document).ready(function () {
 			if (codeData.length > 0) {
 				const codeType = guessQrCodeType(codeData);
 				const codeName = utilQRName(codeType);
+				let codeSafety = 0;
 
 				if (nostats === false) {
 					statsAddFound(media);
 					historyAdd(media, codeType, codeData);
 				}
+
+				if (codeType === 'url') verifyURLSafety(codeData);
 
 				kUIDecodedType.val(codeName);
 				if (['url', 'call', 'sms', 'whatsapp', 'email', 'gmail', 'gEvent', 'location', 'paypal', 'crypto'].includes(codeType)) {
@@ -251,6 +256,77 @@ $(document).ready(function () {
 		if (cryptoPrefixes.some(prefix => text.startsWith(prefix))) return 'crypto';
 
 		return 'text';
+	}
+	function verifyURLSafety(url) {
+		const urlObj = new URL(url);
+		if (!urlObj) return;
+		urlObj.search = '';
+		urlObj.hash = '';
+		const cleanUrl = urlObj.toString();
+
+		urlSafetyDB((readStore) => {
+			const getRequest = readStore.get(cleanUrl);
+			
+			getRequest.onsuccess = (event) => {
+				const result = event.target.result;
+				if (result) {
+					console.log('DB Object retrieved:', cleanUrl, result);
+					uiURLSafety(result);
+				} else {
+					const requestBody = JSON.stringify({url : cleanUrl});
+console.log('No matching object found -> checking ...', cleanUrl, requestBody);
+					//fetch(`https://cors-anywhere.herokuapp.com/${kPrefsSafetyCheckURL}`, {
+					fetch(kPrefsSafetyCheckURL, {
+						method: 'POST',
+						mode: 'cors',
+						headers: { 'Content-Type': 'application/json', 'Accept': '*/*', 'User-Agent': 'Mozilla/5.0', 'Referer': 'https://qrcodestudio.app/qr-code-decoder/' },
+						body: requestBody
+					})
+					.then((response) => { console.log(response.statusText); return response.json(); })
+					.then((data) => {
+console.log(data);
+						urlSafetyDB((saveStore) => {
+							const newObject = { url: cleanUrl, safe: data.threatFound, description: 'TODO This is a sample.' };
+							const addRequest = saveStore.add(newObject);
+							addRequest.onsuccess = () => {
+								console.log('Object added successfully.');
+								uiURLSafety(newObject);
+							};
+							addRequest.onerror = (event) => {
+								console.error('Add operation error:', event.target.error);
+							};
+						})
+					}).catch((error) => {
+						console.error(`Fetch error: ${error.message}`);
+					});
+				}
+			};
+			getRequest.onerror = (event) => { };
+		});
+	}
+	function urlSafetyDB(callback) {
+		const request = indexedDB.open(`QRCodeStudioApp${kPrefsAppKey}`, 1);
+		request.onupgradeneeded = (event) => {
+			const db = event.target.result;
+			if (!db.objectStoreNames.contains('urlSafety')) {
+				db.createObjectStore('urlSafety', { keyPath: 'url', autoIncrement: false });
+			}
+		};
+		request.onsuccess = (event) => {
+			const db = event.target.result;
+			const transaction = db.transaction('urlSafety', 'readwrite');
+			const objectStore = transaction.objectStore('urlSafety');
+			callback(objectStore);
+		};
+		request.onerror = (event) => { };
+	}
+	function uiURLSafety(urlRec) {
+console.log('uiURLSafety', urlRec);
+		if (urlRec.safe === true) {
+
+		} else {
+
+		}
 	}
 
 	function prefsRead(key, value) {
