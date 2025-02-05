@@ -27,6 +27,8 @@ $(document).ready(function () {
 	const kUIStatsValues = $('.qr-stats-value');
 	const kUIHistoryContainer = $('#qr-history-container');
 	const kUIHistoryTrashButton = $('#qr-history-trash-button');
+	const kUIThreatOverlay = $('#qr-url-threat-overlay');
+	const kUIThreatDismissButton = $('#qr-url-threat-dismiss');
 	let gCameraStream;
 	let gCameraScanning = false;
 
@@ -73,6 +75,9 @@ $(document).ready(function () {
 			kUIDecodedCopyToast.removeClass(kClassHidden);
 			setTimeout(() => { kUIDecodedCopyToast.addClass(kClassHidden); }, 2100);
 		}).catch(err => {});
+	});
+	kUIThreatDismissButton.on('click', function() {
+		kUIThreatOverlay.addClass(kClassHidden);
 	});
 
 	kUIStatsPeriod.on('click', function() {
@@ -313,11 +318,10 @@ console.log('data', data);
 		request.onerror = (event) => { };
 	}
 	function uiURLSafety(urlRec) {
-console.log('uiURLSafety', urlRec);
 		if (urlRec.threat === true) {
-
+			kUIThreatOverlay.removeClass(kClassHidden);
 		} else {
-
+			if (!kUIThreatOverlay.hasClass(kClassHidden)) kUIThreatOverlay.addClass(kClassHidden);
 		}
 	}
 
