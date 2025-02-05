@@ -1,7 +1,8 @@
 $(document).ready(function () {
-	const kPrefsAppKey = '.QRCodeDecoder';
-	const kPrefsSafetyCheckURL = 'https://qrcodesafebrowsingcheck.qrcodestudioapp.workers.dev/';
-	const kCodeSafety = { unknown : 0, safe : 1, malicious : -1, pending : 2 };
+	const kMetaSetup = JSON.parse($('meta[name="qrSetup"]').attr('content'));
+	const kPrefsAppKey = kMetaSetup.appKey;
+	const kPrefsCheckLinkSafety = kMetaSetup.checkSafety;
+	const kLinkSafetyCheckURL = 'https://qrcodesafebrowsingcheck.qrcodestudioapp.workers.dev/';
 	const kDBStoreSafety = 'urlSafety';
 	const kQRMediaFile = 'file';
 	const kQRMediaCamera = 'camera';
@@ -216,7 +217,7 @@ $(document).ready(function () {
 					historyAdd(media, codeType, codeData);
 				}
 
-				if (codeType === 'url') verifyURLSafety(codeData);
+				if (kPrefsCheckLinkSafety === true && codeType === 'url') verifyURLSafety(codeData);
 
 				kUIDecodedType.val(codeName);
 				if (['url', 'call', 'sms', 'whatsapp', 'email', 'gmail', 'gEvent', 'location', 'paypal', 'crypto'].includes(codeType)) {
@@ -280,7 +281,7 @@ $(document).ready(function () {
 					uiURLSafety(result);
 				} else {
 					const requestBody = JSON.stringify({url : cleanUrl});
-					fetch(kPrefsSafetyCheckURL, {
+					fetch(kLinkSafetyCheckURL, {
 						method: 'POST',
 						mode: 'cors',
 						headers: { 'Content-Type': 'application/json', 'Accept': '*/*', 'Referer': 'https://qrcodestudio.app/' },
