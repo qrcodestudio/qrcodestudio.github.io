@@ -28,6 +28,7 @@ $(document).ready(function () {
 	const kUIHistoryContainer = $('#qr-history-container');
 	const kUIHistoryTrashButton = $('#qr-history-trash-button');
 	const kUIThreatOverlay = $('#qr-url-threat-overlay');
+	const kUIThreatMatches = $('#qr-url-threat-matches');
 	const kUIThreatDismissButton = $('#qr-url-threat-dismiss');
 	let gCameraStream;
 	let gCameraScanning = false;
@@ -288,7 +289,7 @@ $(document).ready(function () {
 					.then(response => response.json())
 					.then((data) => {
 console.log('data', data);
-						const newObject = { url: cleanUrl, threat: data.threatFound, description: 'TODO This is a sample.' };
+						const newObject = { url: cleanUrl, safe: !data.threatFound, threats: (data.matches || []).map(m => m.threatType) };
 						uiURLSafety(newObject);
 						urlSafetyDB((saveStore) => {
 							const addRequest = saveStore.add(newObject);
@@ -318,10 +319,11 @@ console.log('data', data);
 		request.onerror = (event) => { };
 	}
 	function uiURLSafety(urlRec) {
-		if (urlRec.threat === true) {
-			kUIThreatOverlay.removeClass(kClassHidden);
-		} else {
+		if (urlRec.safe === true) {
 			if (!kUIThreatOverlay.hasClass(kClassHidden)) kUIThreatOverlay.addClass(kClassHidden);
+		} else {
+			kUIThreatMatches.text(urlRec.threats.length > 0 ? urlRec.threats.join(', ') : 'Unknown Threat');
+			kUIThreatOverlay.removeClass(kClassHidden);
 		}
 	}
 
